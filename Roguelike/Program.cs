@@ -17,26 +17,33 @@ namespace Roguelike
         static void Main(string[] args)
         {
             //Variables
-            int colums;
+            int columns;
             int rows;
+            int level;
+            Map map;
 
-            if (args.Length < 2)
-            {
-                Console.WriteLine("Run a Program with -r and -c arguments followed by a the number you want\n (-r for Rows and -c for Colums");
-                return;
-            }
-            else if (args [0] == "-r")
+            if (args [0] == "-r")
             {
                 rows = Convert.ToInt32(args[1]);
-                colums = Convert.ToInt32(args[3]);
-                Console.WriteLine(rows);
+                columns = Convert.ToInt32(args[3]);
             }
             else if (args [0] == "-c")
             {
                 rows = Convert.ToInt32(args[3]);
-                colums = Convert.ToInt32(args[1]);
-                Console.WriteLine(rows);
+                columns = Convert.ToInt32(args[1]);
             }
+            else
+            {
+                Console.Write(
+                "Run a Program with -r and -c arguments followed");
+                Console.Write(
+                "by a the number you want\n (-r for Rows and -c for Columns");
+                return;
+            }
+
+            level = 1;
+
+            map = new Map(rows, columns, level);
         }
     }
 }
