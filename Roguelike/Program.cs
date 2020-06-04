@@ -22,12 +22,12 @@ namespace Roguelike
             int level;
             Map map;
 
-            if (args [0] == "-r")
+            if ((args [0] == "-r") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[1]);
                 columns = Convert.ToInt32(args[3]);
             }
-            else if (args [0] == "-c")
+            else if ((args [0] == "-c") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[3]);
                 columns = Convert.ToInt32(args[1]);
