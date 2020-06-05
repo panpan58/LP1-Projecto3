@@ -20,8 +20,6 @@ namespace Roguelike
             //Variables
             int columns;
             int rows;
-            int level;
-            Map map;
 
             if ((args[0] == "-r") && (args.Length == 4))
             {
@@ -31,7 +29,7 @@ namespace Roguelike
             else if ((args[0] == "-c") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[3]);
-                colums = Convert.ToInt32(args[1]);
+                columns = Convert.ToInt32(args[1]);
             }
             else
             {
@@ -41,20 +39,17 @@ namespace Roguelike
                 "by a the number you want\n (-r for Rows and -c for Columns");
                 return;
             }
-            Menu();
+            Menu(rows, columns);
         }
 
-
-        /// <summary>
-        /// A method that handles the menu printing and user input. 
-        /// Here the user can start the game, check the highscores, 
-        /// read the instructions or the credits
-        /// </summary>
-        static void Menu()
+        
+        static void Menu(int rows, int columns)
         {
             //Variables
             string awnser;
             bool loop = true;
+            int level;
+            Map map;
 
             while (loop)
             {
