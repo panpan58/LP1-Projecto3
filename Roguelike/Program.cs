@@ -75,19 +75,25 @@ namespace Roguelike
                     //Shows the HighScore
                     case "2":
                         //Highscore()?
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadLine();
                         break;
 
                     //Print the intructions of the game
                     case "3":
-                        Console.Write("TBD");
+                        Console.WriteLine("TBD");
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadLine();
                         break;
 
                     //Prints the names of the developers
                     case "4":
                         Console.WriteLine("This game was developed by:");
-                        Console.WriteLine("António Branco (21906811)");
-                        Console.WriteLine("João Gonçalves (21901696)");
-                        Console.WriteLine("Vasco Avec (21905658)");
+                        Console.WriteLine("Antonio Branco (21906811)");
+                        Console.WriteLine("Joao Goncalves (21901696)");
+                        Console.WriteLine("Vasco Duarte (21905658)");
+                        Console.WriteLine("Press any to continue");
+                        Console.ReadLine();
                         break;
 
                     //Leaves the game
