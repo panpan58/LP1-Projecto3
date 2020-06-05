@@ -18,29 +18,32 @@ namespace Roguelike
         static void Main(string[] args)
         {
             //Variables
-            int colums;
+            int columns;
             int rows;
+            int level;
+            Map map;
 
-            if (args.Length < 2)
-            {
-                Console.WriteLine("Run a Program with -r and -c " +
-                    "arguments followed by a the number you want\n " +
-                    "(-r for Rows and -c for Colums");
-                return;
-            }
-            else if (args [0] == "-r")
+            if ((args[0] == "-r") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[1]);
-                colums = Convert.ToInt32(args[3]);
-
+                columns = Convert.ToInt32(args[3]);
             }
-            else if (args [0] == "-c")
+            else if ((args[0] == "-c") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[3]);
                 colums = Convert.ToInt32(args[1]);
             }
+            else
+            {
+                Console.Write(
+                "Run a Program with -r and -c arguments followed");
+                Console.Write(
+                "by a the number you want\n (-r for Rows and -c for Columns");
+                return;
+            }
             Menu();
         }
+
 
         /// <summary>
         /// A method that handles the menu printing and user input. 
@@ -69,6 +72,8 @@ namespace Roguelike
                 {
                     //Starts new game
                     case "1":
+                        level = 1;
+                        map = new Map(rows, columns, level);
                         loop = false;
                         break;
 
