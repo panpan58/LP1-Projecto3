@@ -48,8 +48,7 @@ namespace Roguelike
             //Variables
             string awnser;
             bool loop = true;
-            int level;
-            Map map;
+            
 
             while (loop)
             {
@@ -67,22 +66,21 @@ namespace Roguelike
                 {
                     //Starts new game
                     case "1":
-                        level = 1;
-                        map = new Map(rows, columns, level);
+                        Game(rows, columns);
                         loop = false;
                         break;
 
                     //Shows the HighScore
                     case "2":
                         //Highscore()?
-                        Console.WriteLine("Press any key to continue");
+                        Console.WriteLine("Press ENTER to continue");
                         Console.ReadLine();
                         break;
 
                     //Print the intructions of the game
                     case "3":
                         Console.WriteLine("TBD");
-                        Console.WriteLine("Press any key to continue");
+                        Console.WriteLine("Press ENTER to continue");
                         Console.ReadLine();
                         break;
 
@@ -92,7 +90,7 @@ namespace Roguelike
                         Console.WriteLine("Antonio Branco (21906811)");
                         Console.WriteLine("Joao Goncalves (21901696)");
                         Console.WriteLine("Vasco Duarte (21905658)");
-                        Console.WriteLine("Press any to continue");
+                        Console.WriteLine("Press ENTER to continue");
                         Console.ReadLine();
                         break;
 
@@ -107,6 +105,25 @@ namespace Roguelike
                         break;
                 }
             }
+        }
+        
+        static void Game(int rows, int columns)
+        {
+            //Variables
+            int level = 0;
+            Map map;
+            
+            while(true)
+            {
+                //map generation
+                level += 1;
+                map = new Map(rows, columns, level);
+                while(true)
+                {
+
+                }
+            }
+            
         }
     }
 }
