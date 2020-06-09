@@ -27,13 +27,27 @@ namespace Roguelike
             int nObstacles = rnd.Next(Math.Min(rows,columns)-1);
 
             int nEnemy = rnd.Next(((rows + columns)/2)+level);
+            if(((rows + columns)/2) - level <= 1)
+            {
+                int nPowerUPs = 1;
+            }
+            else
+            {
+                int nPowerUPs = rnd.Next(1,(((rows + columns)/2) - level));
+            }
             
-            int nPowerUPs = rnd.Next(1,(((rows + columns)/2) - level));
             
-            map[0,0] = 1;
+            map[rnd.Next(0,rows),0] = 1;
 
             map[rnd.Next(0,rows),columns-1] = 2;
 
+            
+
+            return map;
+        }
+
+        public int[,] GetMap()
+        {
             return map;
         }
 

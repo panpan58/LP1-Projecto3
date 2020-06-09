@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Mail;
+using System.Text;
 
 /// <summary>
 /// 
@@ -120,10 +121,40 @@ namespace Roguelike
                 map = new Map(rows, columns, level);
                 while(true)
                 {
-
+                    MapDraw(rows, columns, map);
+                    Console.ReadLine();
+                    break;
                 }
             }
             
+        }
+
+        static void MapDraw(int rows, int columns, Map map)
+        {
+            //Variables
+            int [,] map_renderer = map.GetMap();
+            
+            
+            for(int i = 0; i < rows; i++)
+            {
+                for(int j = 0; j < columns; j++)
+                {
+                    if(map_renderer [i,j] == 1)
+                    {
+                        Console.Write("_");
+                    }
+                    else if (map_renderer [i,j] == 2)
+                    {
+                        Console.Write("0");
+                    }
+                    else
+                    {
+                        Console.Write("*");
+                    }
+                    
+                }
+                Console.WriteLine("");
+            }
         }
     }
 }
