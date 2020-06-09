@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Mail;
 using System.Text;
+using System.Collections;
+using System.Collections.Generic;  
 
 /// <summary>
 /// 
@@ -16,6 +18,7 @@ namespace Roguelike
         /// 
         /// </summary>
         /// <param name="args"></param>
+        
         static void Main(string[] args)
         {
             //Variables
@@ -116,6 +119,8 @@ namespace Roguelike
             Map map;
             Player player;
             Ending end;
+            Enemy[] enemies;
+            PowerUp powerUp;
             
             while(true)
             {
@@ -123,7 +128,9 @@ namespace Roguelike
                 level += 1;
                 player = new Player(rows, columns);
                 end = new Ending();
-                map = new Map(rows, columns, level, player, end);
+                enemies = new Enemy[999];
+                powerUp = new PowerUp();
+                map = new Map(rows, columns, level, player, end, enemies);
                 while(true)
                 {
                     MapDraw(rows, columns, map);
@@ -142,6 +149,8 @@ namespace Roguelike
             char empty = '\u26AA';
             char player = '\u26C4';
             char wall = '\u2B1B';
+            char enemy = '\u270B';
+            char strong_enemy = '\u270A';
             
             for(int i = 0; i < rows; i++)
             {
@@ -158,6 +167,14 @@ namespace Roguelike
                     else if (map_renderer [i,j] == 3)
                     {
                         Console.Write(wall);
+                    }
+                    else if (map_renderer [i,j] == 4)
+                    {
+                        Console.Write(enemy);
+                    }
+                    else if (map_renderer [i,j] == 5)
+                    {
+                        Console.Write(strong_enemy);
                     }
                     else
                     {

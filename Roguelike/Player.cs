@@ -5,7 +5,7 @@ namespace Roguelike
         private int rows;
         private int columns;
         public int [] position { get; set;}
-        private int HP;
+        private int HP { get; set;}
 
         public Player(int rows, int columns)
         {
