@@ -26,12 +26,12 @@ namespace Roguelike
             int rows;
             Console.OutputEncoding = Encoding.UTF8;
 
-            if ((args[0] == "-r") && (args.Length == 4))
+            if ((args[0] == "-r") && (args[2] == "-c") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[1]);
                 columns = Convert.ToInt32(args[3]);
             }
-            else if ((args[0] == "-c") && (args.Length == 4))
+            else if ((args[0] == "-c") && (args[2] == "-r") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[3]);
                 columns = Convert.ToInt32(args[1]);
@@ -140,7 +140,7 @@ namespace Roguelike
             }
             
         }
-
+        
         static void MapDraw(int rows, int columns, Map map)
         {
             //Variables
@@ -179,8 +179,7 @@ namespace Roguelike
                     else
                     {
                         Console.Write(empty);
-                    }
-                    
+                    }  
                 }
                 Console.WriteLine("");
             }
