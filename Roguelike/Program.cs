@@ -114,12 +114,16 @@ namespace Roguelike
             //Variables
             int level = 0;
             Map map;
+            Player player;
+            Ending end;
             
             while(true)
             {
                 //map generation
                 level += 1;
-                map = new Map(rows, columns, level);
+                player = new Player(rows, columns);
+                end = new Ending();
+                map = new Map(rows, columns, level, player, end);
                 while(true)
                 {
                     MapDraw(rows, columns, map);
@@ -137,6 +141,7 @@ namespace Roguelike
             char objective = '\u26AB';
             char empty = '\u26AA';
             char player = '\u26C4';
+            char wall = '\u2B1B';
             
             for(int i = 0; i < rows; i++)
             {
@@ -149,6 +154,10 @@ namespace Roguelike
                     else if (map_renderer [i,j] == 2)
                     {
                         Console.Write(objective);
+                    }
+                    else if (map_renderer [i,j] == 3)
+                    {
+                        Console.Write(wall);
                     }
                     else
                     {

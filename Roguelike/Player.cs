@@ -4,5 +4,18 @@ namespace Roguelike
     {
         private int rows;
         private int columns;
+        public int [] position { get; set;}
+        private int HP;
+
+        public Player(int rows, int columns)
+        {
+            position = new int [] { 0, 0};
+            HP = rows * columns / 4;
+        }
+
+        public Player PlayerMovement(Player player)
+        {
+            return player;
+        }
     }
 }
