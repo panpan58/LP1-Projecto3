@@ -21,6 +21,7 @@ namespace Roguelike
             //Variables
             int columns;
             int rows;
+            Console.OutputEncoding = Encoding.UTF8;
 
             if ((args[0] == "-r") && (args.Length == 4))
             {
@@ -133,7 +134,9 @@ namespace Roguelike
         {
             //Variables
             int [,] map_renderer = map.GetMap();
-            
+            char objective = '\u26AB';
+            char empty = '\u26AA';
+            char player = '\u26C4';
             
             for(int i = 0; i < rows; i++)
             {
@@ -141,15 +144,15 @@ namespace Roguelike
                 {
                     if(map_renderer [i,j] == 1)
                     {
-                        Console.Write("_");
+                        Console.Write(player);
                     }
                     else if (map_renderer [i,j] == 2)
                     {
-                        Console.Write("0");
+                        Console.Write(objective);
                     }
                     else
                     {
-                        Console.Write("*");
+                        Console.Write(empty);
                     }
                     
                 }
