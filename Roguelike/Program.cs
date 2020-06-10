@@ -53,20 +53,22 @@ namespace Roguelike
             //Variables
             string awnser;
             bool loop = true;
-            
+            string wall = "----------------";
+
 
             while (loop)
             {
                 //The Menu itself
-                Console.WriteLine("----------------");
+                Console.WriteLine(wall);
                 Console.WriteLine("1. New Game");
                 Console.WriteLine("2. High Scores");
                 Console.WriteLine("3. Instructions");
                 Console.WriteLine("4. Credits");
                 Console.WriteLine("5. Quit");
-                Console.WriteLine("----------------");
+                Console.WriteLine(wall);
 
                 awnser = Console.ReadLine();
+                Console.WriteLine(wall);
                 switch (awnser)
                 {
                     //Starts new game
@@ -78,15 +80,16 @@ namespace Roguelike
                     //Shows the HighScore
                     case "2":
                         //Highscore()?
-                        Console.WriteLine("Press ENTER to continue");
-                        Console.ReadLine();
+                        Console.WriteLine("Press Enter to continue.");
+                        while(Console.ReadKey().Key != ConsoleKey.Enter) { }
                         break;
 
                     //Print the intructions of the game
                     case "3":
                         Console.WriteLine("TBD");
-                        Console.WriteLine("Press ENTER to continue");
-                        Console.ReadLine();
+                        Console.WriteLine(wall);
+                        Console.WriteLine("Press Enter to continue.");
+                        while (Console.ReadKey().Key != ConsoleKey.Enter) { }
                         break;
 
                     //Prints the names of the developers
@@ -95,8 +98,9 @@ namespace Roguelike
                         Console.WriteLine("Antonio Branco (21906811)");
                         Console.WriteLine("Joao Goncalves (21901696)");
                         Console.WriteLine("Vasco Duarte (21905658)");
-                        Console.WriteLine("Press ENTER to continue");
-                        Console.ReadLine();
+                        Console.WriteLine(wall);
+                        Console.WriteLine("Press Enter to continue.");
+                        while (Console.ReadKey().Key != ConsoleKey.Enter) { }
                         break;
 
                     //Leaves the game

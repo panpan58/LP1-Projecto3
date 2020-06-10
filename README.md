@@ -21,6 +21,8 @@
 |João Gonçalves|https://stackoverflow.com/questions/3414900/how-to-get-a-char-from-an-ascii-character-code-in-c-sharp|
 |João Gonçalves| https://stackoverflow.com/questions/11550879/detecting-key-presses-in-console
 |João Gonçalves|https://unicode-table.com/pt/#basic-latin
+|António Branco|https://www.google.com/search?q=how+to+use+console.readkey+in+input&oq=how+to+use+console.readkey+in+input&aqs=chrome..69i57.8223j0j7&sourceid=chrome&ie=UTF-8|
+|João Gonçalvez|https://docs.microsoft.com/en-us/dotnet/api/system.console.readkey?view=netcore-3.1|
 |||
 |||
 |||

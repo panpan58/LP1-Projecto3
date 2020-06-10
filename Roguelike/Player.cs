@@ -187,6 +187,7 @@ namespace Roguelike
                     break;
 
                 default:
+                    Console.Write("Invalid Input please type WASD to continue playing.");
                     break;
             }
             return player;
