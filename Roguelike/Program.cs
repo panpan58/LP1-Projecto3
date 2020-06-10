@@ -137,6 +137,7 @@ namespace Roguelike
                 {
                     MapDraw(rows, columns, map);
                     player = player.PlayerMovement(player, map);
+                    Console.WriteLine(player.HP);
                     //Console.ReadLine();
                     //break;
                 }
