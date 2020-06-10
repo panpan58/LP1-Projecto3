@@ -139,11 +139,40 @@ namespace Roguelike
 
                 while(true)
                 {
-                    MapDraw(rows, columns, map);
-                    player = player.PlayerMovement(player, map, rows, columns);
-                    Console.WriteLine(player.HP);
-                    //Console.ReadLine();
-                    //break;
+                    for(int i = 0; i < 2; i++)
+                    {
+                        MapDraw(rows, columns, map);
+                        player = player.PlayerMovement(player, map, rows, 
+                        columns);
+                        Console.WriteLine("----------------------------------");
+                        if(player.HP <= 0)
+                        {
+                            break;
+                        }
+                        if((player.position[0] == end.position[0]) &&
+                        (player.position[1] == end.position[1]))
+                        {
+                            Console.WriteLine(
+                                $"Congrats, you passed to level {level+1}!");
+                            break;
+                        }
+                    }
+                    //enemies = enemies.EnemiesMovement(enemies, map, rows, columns);
+                    if(player.HP <= 0)
+                    {
+                        break;
+                    }
+                    if((player.position[0] == end.position[0]) &&
+                    (player.position[1] == end.position[1]))
+                    {
+                        break;
+                    }
+                }
+                if(player.HP <= 0)
+                {
+                    Console.WriteLine("You dropped to 0 HP.");
+                    Console.WriteLine("Game Over");
+                    break;
                 }
             }
             

@@ -19,6 +19,8 @@ namespace Roguelike
         int columns)
         {
             ConsoleKeyInfo input;
+            Random rnd = new Random();
+            int rnd_pos;
 
             do{
                 input = Console.ReadKey(true);
@@ -37,8 +39,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0],player.position[1]+1]
-                        == 7)
+                        else if(map.map [player.position[0],
+                        player.position[1]+1] == 7)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[1] += 1;
@@ -47,8 +49,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0],player.position[1]+1]
-                        == 8)
+                        else if(map.map [player.position[0],
+                        player.position[1]+1] == 8)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[1] += 1;
@@ -57,8 +59,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0],player.position[1]+1] 
-                        != 3 && map.map 
+                        else if(map.map [player.position[0],
+                        player.position[1]+1] != 3 && map.map 
                         [player.position[0],player.position[1]+1] != 4 && 
                         map.map [player.position[0],player.position[1]+1] != 5)
                         {
@@ -95,8 +97,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0],player.position[1]-1]
-                        == 7)
+                        else if(map.map [player.position[0],
+                        player.position[1]-1] == 7)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[1] -= 1;
@@ -105,8 +107,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0],player.position[1]-1]
-                        == 8)
+                        else if(map.map [player.position[0],
+                        player.position[1]-1] == 8)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[1] -= 1;
@@ -115,8 +117,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0],player.position[1]-1] 
-                        != 3 && map.map 
+                        else if(map.map [player.position[0],
+                        player.position[1]-1] != 3 && map.map 
                         [player.position[0],player.position[1]-1] != 4 && 
                         map.map [player.position[0],player.position[1]-1] != 5)
                         {
@@ -153,8 +155,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0]-1,player.position[1]]
-                        == 7)
+                        else if(map.map [player.position[0]-1,
+                        player.position[1]] == 7)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[0] -= 1;
@@ -163,8 +165,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0]-1,player.position[1]]
-                        == 8)
+                        else if(map.map [player.position[0]-1,
+                        player.position[1]] == 8)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[0] -= 1;
@@ -173,8 +175,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0]-1,player.position[1]] 
-                        != 3 && map.map 
+                        else if(map.map [player.position[0]-1,
+                        player.position[1]] != 3 && map.map 
                         [player.position[0]-1,player.position[1]] != 4 && 
                         map.map [player.position[0]-1,player.position[1]] != 5)
                         {
@@ -210,8 +212,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0]+1,player.position[1]]
-                        == 7)
+                        else if(map.map [player.position[0]+1,
+                        player.position[1]] == 7)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[0] += 1;
@@ -220,8 +222,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0]+1,player.position[1]]
-                        == 8)
+                        else if(map.map [player.position[0]+1,
+                        player.position[1]] == 8)
                         {
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[0] += 1;
@@ -230,8 +232,8 @@ namespace Roguelike
                             break;
                         }
 
-                        else if(map.map [player.position[0]+1,player.position[1]] 
-                        != 3 && map.map 
+                        else if(map.map [player.position[0]+1,
+                        player.position[1]] != 3 && map.map 
                         [player.position[0]+1,player.position[1]] != 4 && 
                         map.map [player.position[0]+1,player.position[1]] != 5)
                         {
@@ -254,10 +256,37 @@ namespace Roguelike
                     }
                 }
 
+                else if(input.Key.ToString() == "Q")
+                {
+                    map.map[player.position[0],
+                    player.position[1]] = 0;
+                    rnd_pos = rnd.Next(0, rows);
+                    player.HP -= 5;
+                    if(map.map[0, rnd_pos] == 0)
+                    {
+                        player.position[0] = rnd_pos;
+                        player.position[1] = 0;
+                        Console.WriteLine("The tp was successful!");
+                    }
+                    else
+                    {
+                        Console.WriteLine(
+                        "Sorry, but the tp failed. Try again.");
+                    }
+                    if(player.HP <= 0)
+                    {
+                        Console.WriteLine("You died using the tp ...");
+                    }
+                    map.map[player.position[0],
+                    player.position[1]] = 1;
+                    break;
+                }
+
                 else
                 {
+                    Console.Write("Invalid Input please type WASD to move");
                     Console.WriteLine(
-                    "Invalid Input please type WASD to continue playing.");
+                    "or Q to use super tp to continue playing.");
                 }
         
             } while(true);

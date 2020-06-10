@@ -53,6 +53,7 @@ namespace Roguelike
 
             x = rnd.Next(0,rows);
             end.position[0] = x;
+            end.position[1] = columns-1;
             map[x,columns-1] = 2;
 
             for(int i = 0; i < nObstacles;i++)
