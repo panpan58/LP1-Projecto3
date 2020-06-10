@@ -140,7 +140,7 @@ namespace Roguelike
                 while(true)
                 {
                     MapDraw(rows, columns, map);
-                    player = player.PlayerMovement(player, map);
+                    player = player.PlayerMovement(player, map, rows, columns);
                     Console.WriteLine(player.HP);
                     //Console.ReadLine();
                     //break;
@@ -153,15 +153,15 @@ namespace Roguelike
         {
             //Variables
             int [,] map_renderer = map.GetMap();
-            char objective = '\u26AB';
-            char empty = '\u26AA';
-            char player = '\u26C4';
-            char wall = '\u2B1B';
-            char enemy = '\u270B';
-            char strong_enemy = '\u270A';
-            char small_pup = '\u26FD';
-            char medium_pup = '\u2795';
-            char big_pup = '\u2728';
+            char objective = 'E';
+            char empty = '_';
+            char player = 'P';
+            char wall = 'W';
+            char enemy = 'B';
+            char strong_enemy = 'S';
+            char small_pup = 'Y';
+            char medium_pup = 'O';
+            char big_pup = 'G';
             
             for (int i = 0; i < rows; i++)
             {
