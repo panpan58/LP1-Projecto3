@@ -130,12 +130,15 @@ namespace Roguelike
                 end = new Ending();
                 enemies = new Enemy[999];
                 powerup = new PowerUp[999];
-                map = new Map(rows, columns, level, player, end, enemies, powerup);
+                map = new Map(rows, columns, level, player, end, enemies, 
+                powerup);
+
                 while(true)
                 {
                     MapDraw(rows, columns, map);
-                    Console.ReadLine();
-                    break;
+                    player = player.PlayerMovement(player, map);
+                    //Console.ReadLine();
+                    //break;
                 }
             }
             
