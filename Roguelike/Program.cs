@@ -120,17 +120,17 @@ namespace Roguelike
             Player player;
             Ending end;
             Enemy[] enemies;
-            PowerUp powerUp;
-            
-            while(true)
+            PowerUp[] powerup;
+
+            while (true)
             {
                 //map generation
                 level += 1;
                 player = new Player(rows, columns);
                 end = new Ending();
                 enemies = new Enemy[999];
-                powerUp = new PowerUp();
-                map = new Map(rows, columns, level, player, end, enemies);
+                powerup = new PowerUp[999];
+                map = new Map(rows, columns, level, player, end, enemies, powerup);
                 while(true)
                 {
                     MapDraw(rows, columns, map);
@@ -151,8 +151,11 @@ namespace Roguelike
             char wall = '\u2B1B';
             char enemy = '\u270B';
             char strong_enemy = '\u270A';
+            char small_pup = '\u26FD';
+            char medium_pup = '\u2795';
+            char big_pup = '\u2728';
             
-            for(int i = 0; i < rows; i++)
+            for (int i = 0; i < rows; i++)
             {
                 for(int j = 0; j < columns; j++)
                 {
@@ -175,6 +178,18 @@ namespace Roguelike
                     else if (map_renderer [i,j] == 5)
                     {
                         Console.Write(strong_enemy);
+                    }
+                    else if (map_renderer [i,j] == 6)
+                    {
+                        Console.Write(small_pup);
+                    }
+                    else if (map_renderer[i, j] == 7)
+                    {
+                        Console.Write(medium_pup);
+                    }
+                    else if (map_renderer[i, j] == 8)
+                    {
+                        Console.Write(big_pup);
                     }
                     else
                     {

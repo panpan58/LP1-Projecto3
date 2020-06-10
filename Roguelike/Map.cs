@@ -7,19 +7,20 @@ namespace Roguelike
         private int rows;
         private int columns;
         private int level;
-        private int[,] enemies;
+
         public int[,] map { get; set;}
 
         public Map(int rows, int columns, int level, Player player, Ending end,
-        Enemy[] enemies)
+        Enemy[] enemies, PowerUp[] powerup)
         {
             this.rows = rows;
             this.columns = columns;
             this.level = level;
-            map = MapCreation(player, end, enemies);
+
+            map = MapCreation(player, end, enemies, powerup);
         }
 
-        public int[,] MapCreation(Player player, Ending end, Enemy[] enemies)
+        public int[,] MapCreation(Player player, Ending end, Enemy[] enemies, PowerUp[] powerup)
         {
             // Variables
             map = new int [rows, columns];
@@ -34,19 +35,16 @@ namespace Roguelike
 
             int nEnemy = rnd.Next(((rows + columns)/2) + level);
 
-            if(nEnemy > ((rows * columns) / 2))
+            if (nEnemy > ((rows * columns) / 2))
             {
                 nEnemy = (rows * columns) / 2;
             }
 
-            if(((rows + columns)/2) - level <= 1)
-            {
-                int nPowerUPs = 1;
-            }
+            int nPowerUPs = rnd.Next(((rows + columns) / 2) + level);
 
-            else
+            if (((rows + columns)/2) - level <= 1)
             {
-                int nPowerUPs = rnd.Next(1,(((rows + columns)/2) - level));
+                nPowerUPs = 1;
             }
 
             x = rnd.Next(0,rows);
@@ -96,6 +94,32 @@ namespace Roguelike
                 {
                     i--;
                 }
+            }
+            for(int i = 0; i < nPowerUPs; i++)
+            {
+                x = rnd.Next(0, rows);
+                y = rnd.Next(0, columns);
+
+                if(map[x, y] == 0)
+                {
+                    luck = rnd.Next(0, 9);
+                    powerup[i] = new PowerUp(luck);
+                    powerup[i].position[0] = x;
+                    powerup[i].position[1] = y;
+                    if(powerup[i].HP == 4)
+                    {
+                        map[x, y] = 6;
+                    }
+                    else if(powerup[i].HP == 8)
+                    {
+                        map[x, y] = 7;
+                    }
+                    else
+                    {
+                        map[x, y] = 8;
+                    }
+                }
+                
             }
 
             return map;
