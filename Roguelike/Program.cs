@@ -120,6 +120,8 @@ namespace Roguelike
         {
             //Variables
             int level = 0;
+            int n_enemies;
+            int[] vector = new int[] {0,0};
             Map map;
             Player player;
             Ending end;
@@ -136,12 +138,13 @@ namespace Roguelike
                 powerup = new PowerUp[999];
                 map = new Map(rows, columns, level, player, end, enemies, 
                 powerup);
+                n_enemies = enemies.Length;
 
                 while(true)
                 {
                     for(int i = 0; i < 2; i++)
                     {
-                        MapDraw(rows, columns, map);
+                        MapDraw(rows, columns, n_enemies, enemies, map);
                         player = player.PlayerMovement(player, map, rows, 
                         columns);
                         Console.WriteLine("----------------------------------");
@@ -157,7 +160,18 @@ namespace Roguelike
                             break;
                         }
                     }
-                    //enemies = enemies.EnemiesMovement(enemies, map, rows, columns);
+                    for(int i = 0; i < n_enemies; i++)
+                    {
+                        try
+                        {
+                        enemies[i] = enemies[i].EnemiesMovement(enemies, player,
+                        map, rows, columns, i, vector);
+                        }
+                        catch (NullReferenceException)
+                        {
+                            break;
+                        }
+                    }
                     if(player.HP <= 0)
                     {
                         break;
@@ -178,7 +192,8 @@ namespace Roguelike
             
         }
         
-        static void MapDraw(int rows, int columns, Map map)
+        static void MapDraw(int rows, int columns, int n_enemies, 
+        Enemy[] enemies, Map map)
         {
             //Variables
             int [,] map_renderer = map.GetMap();
@@ -227,6 +242,31 @@ namespace Roguelike
                     else if (map_renderer[i, j] == 8)
                     {
                         Console.Write(big_pup);
+                    }
+                    else if(map_renderer[i, j] > 8)
+                    {
+                        for(int e = 0; e < n_enemies; e++)
+                        {
+                            try
+                            {
+                                if((enemies[e].position[0] == i) && 
+                                (enemies[e].position[1] == j))
+                                {
+                                    if(enemies[e].HP == 5)
+                                    {
+                                        Console.Write(enemy);
+                                    }
+                                    else
+                                    {
+                                        Console.Write(strong_enemy);
+                                    }
+                                }
+                            }
+                            catch (NullReferenceException)
+                            {
+                                break;
+                            }
+                        }
                     }
                     else
                     {

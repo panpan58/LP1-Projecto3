@@ -4,8 +4,6 @@ namespace Roguelike
 {
     public class Player
     {
-        private int rows;
-        private int columns;
         public int [] position { get; set;}
         public int HP { get; set;}
 
