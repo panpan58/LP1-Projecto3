@@ -23,7 +23,7 @@
 |João Gonçalves|https://unicode-table.com/pt/#basic-latin
 |António Branco|https://www.google.com/search?q=how+to+use+console.readkey+in+input&oq=how+to+use+console.readkey+in+input&aqs=chrome..69i57.8223j0j7&sourceid=chrome&ie=UTF-8|
 |João Gonçalvez|https://docs.microsoft.com/en-us/dotnet/api/system.console.readkey?view=netcore-3.1|
-|||
+|António Branco|https://docs.microsoft.com/en-us/dotnet/api/system.io.directory?view=netcore-3.1|
 |||
 |||
 |Inserir Nome| Inserir Link
