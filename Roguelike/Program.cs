@@ -79,7 +79,8 @@ namespace Roguelike
 
                     //Shows the HighScore
                     case "2":
-                        //Highscore()?
+                        HighScore.PrintHighScoreList();
+                        Console.WriteLine(wall);
                         Console.WriteLine("Press Enter to continue.");
                         while(Console.ReadKey().Key != ConsoleKey.Enter) { }
                         break;
@@ -186,6 +187,8 @@ namespace Roguelike
                 {
                     Console.WriteLine("You dropped to 0 HP.");
                     Console.WriteLine("Game Over");
+                    Console.WriteLine("Final Score: " + level);
+                    HighScore.AddToHighScoreList(new HighScoreList("Pattern", level));
                     break;
                 }
             }
