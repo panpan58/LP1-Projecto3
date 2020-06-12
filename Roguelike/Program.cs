@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Net.Mail;
 using System.Text;
-using System.Collections;
-using System.Collections.Generic;  
 using System.Threading;
 
 
@@ -22,7 +19,6 @@ namespace Roguelike
             // Variables
             int columns;
             int rows;
-            Console.OutputEncoding = Encoding.UTF8;
 
             // Verifies if the player inputs enough arguments and
             // correctly states the rows and columns
@@ -30,12 +26,24 @@ namespace Roguelike
             {
                 rows = Convert.ToInt32(args[1]);
                 columns = Convert.ToInt32(args[3]);
+                Menu(rows, columns);
             }
             else if ((args[0] == "-c") && (args[2] == "-r") && 
             (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[3]);
                 columns = Convert.ToInt32(args[1]);
+                Menu(rows, columns);
+            }
+            else if (args[0] == "-l" && (args.Length == 2))
+            {
+                string save = args[1];
+                SavedGamesList load = SaveGame.LoadGame(save);
+
+                if (load == null)
+                    return;
+                SaveGame.RemoveSavedGame(load);
+                Game(load.SaveRows, load.SaveColumns, load.SaveScore);
             }
             else
             {
@@ -45,7 +53,6 @@ namespace Roguelike
                 "by a the number you want\n (-r for Rows and -c for Columns");
                 return;
             }
-            Menu(rows, columns);
         }
 
         /// <summary>
@@ -59,6 +66,7 @@ namespace Roguelike
             string answer;
             bool loop = true;
             string wall = "----------------";
+            int level = 1;
 
 
             while (loop)
@@ -79,7 +87,7 @@ namespace Roguelike
                 {
                     //Starts new game
                     case "1":
-                        Game(rows, columns);
+                        Game(rows, columns, level);
                         loop = false;
                         break;
 
@@ -143,10 +151,9 @@ namespace Roguelike
         /// </summary>
         /// <param name="rows"></param>
         /// <param name="columns"></param>
-        static void Game(int rows, int columns)
+        static void Game(int rows, int columns, int level)
         {
             //Variables
-            int level = 0;
             int[] vector = new int[] {0,0};
             Map map;
             Player player;
@@ -158,7 +165,6 @@ namespace Roguelike
             while (true)
             {
                 //Generate map depending of the level
-                level += 1;
                 player = new Player(rows, columns);
                 end = new Ending();
                 enemies = new Enemy[999];
@@ -252,10 +258,35 @@ namespace Roguelike
                     Menu(rows, columns);
                     break;
                 }
+                level += 1;
+                //Saves the level if the player wants
+                if (AskSaveGame())
+                    SaveGame.NewSaveGame(level, rows, columns);
             }
-            
         }
-        
+        /// <summary>
+        /// Verifies if the players wants to save the level
+        /// </summary>
+        /// <returns> Bool for yes or no </returns>
+        static bool AskSaveGame()
+        {
+            Console.WriteLine("----------------");
+            Console.WriteLine("Do you Wish to save the current game?");
+            Console.WriteLine("1. Yes \n2. No");
+            string answer = Console.ReadLine();
+            if (answer == "1")
+                return true;
+
+            else if (answer == "2")
+                return false;
+            // If the player answers diferently enters a loop until the answer is 1 or 2
+            else
+            {
+                Console.WriteLine("Please type '1' for Yes or '2' for No.");
+                return AskSaveGame();
+            }
+        }
+
         /// <summary>
         /// Draws the map
         /// </summary>

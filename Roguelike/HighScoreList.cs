@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Roguelike
+﻿namespace Roguelike
 {
     /// <summary>
     /// The list of HighScores and it´s Variables
