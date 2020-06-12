@@ -2,6 +2,9 @@ using System;
 
 namespace Roguelike
 {
+    /// <summary>
+    /// Handles the map generation and its properties
+    /// </summary>
     public class Map
     {
         private int rows;

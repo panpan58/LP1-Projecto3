@@ -2,6 +2,9 @@ using System;
 
 namespace Roguelike
 {
+    /// <summary>
+    /// Handles the player creation and movement
+    /// </summary>
     public class Player
     {
         public int [] position { get; set;}

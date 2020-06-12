@@ -5,28 +5,27 @@ using System.Collections;
 using System.Collections.Generic;  
 using System.Threading;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace Roguelike
 {
     /// <summary>
-    /// 
+    /// Handles the game launch, the menu, game loop and prints the map
     /// </summary>
     class Program
     {
         /// <summary>
-        /// 
+        /// Handles the game launch
         /// </summary>
         /// <param name="args"></param>
-        
         static void Main(string[] args)
         {
-            //Variables
+            // Variables
             int columns;
             int rows;
             Console.OutputEncoding = Encoding.UTF8;
 
+            // Verifies if the player inputs enough arguments and
+            // correctly states the rows and columns
             if ((args[0] == "-r") && (args[2] == "-c") && (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[1]);
@@ -49,7 +48,11 @@ namespace Roguelike
             Menu(rows, columns);
         }
 
-        
+        /// <summary>
+        /// Prints the menu and it´s option, handles the player input regarding itself
+        /// </summary>
+        /// <param name="rows"> States the rows for the game generation</param>
+        /// <param name="columns"> States the columns for the game  generation</param>
         static void Menu(int rows, int columns)
         {
             //Variables
@@ -135,6 +138,11 @@ namespace Roguelike
             }
         }
         
+        /// <summary>
+        /// The game loop, verifies when the player HP drops to 0
+        /// </summary>
+        /// <param name="rows"></param>
+        /// <param name="columns"></param>
         static void Game(int rows, int columns)
         {
             //Variables
@@ -161,6 +169,7 @@ namespace Roguelike
 
                 while(true)
                 {
+                    
                     for(int i = 0; i < 2; i++)
                     {
                         MapDraw(rows, columns, n_enemies, enemies, map, 
@@ -179,7 +188,6 @@ namespace Roguelike
                                 $"Congrats, you passed to level {level+1}!");
                             break;
                         }
-
                     }
                     if(player.HP <= 0)
                     {
@@ -223,6 +231,9 @@ namespace Roguelike
             
         }
         
+        /// <summary>
+        /// Draws the map
+        /// </summary>
         static void MapDraw(int rows, int columns, int n_enemies, 
         Enemy[] enemies, Map map, int HP, int level)
         {

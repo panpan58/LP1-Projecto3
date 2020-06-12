@@ -2,11 +2,20 @@ using System;
 
 namespace Roguelike
 {
+    /// <summary>
+    /// Handles the creation and movement of 
+    /// Each enemy
+    /// </summary>
     public class Enemy
     {
         public int HP { get; set;}
         public int [] position { get; set;}
 
+        /// <summary>
+        /// Verifies if the new Enemy will be
+        ///  Big or Small according to luck
+        /// </summary>
+        /// <param name="luck"> Random number generated for each new enemy</param>
         public Enemy(int luck)
         {
             position = new int [] { 0, 0};
@@ -20,6 +29,10 @@ namespace Roguelike
             }
         }
 
+        /// <summary>
+        /// Handles the movement of each enemy on the board
+        /// </summary>
+        /// <returns> The enemy position </returns>
         public Enemy EnemiesMovement(Enemy[] enemies, Player player, Map map, 
         int rows,int columns, int i, int[] vector)
         {

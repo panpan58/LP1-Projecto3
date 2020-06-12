@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Roguelike
 {
+    /// <summary>
+    /// The list of HighScores and it´s Variables
+    /// </summary>
     class HighScoreList
     {
         public string Name { get; set; }
