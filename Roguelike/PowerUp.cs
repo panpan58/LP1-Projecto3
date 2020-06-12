@@ -9,6 +9,11 @@ namespace Roguelike
         public int HP { get; set; }
         public int[] position { get; set; }
 
+        /// <summary>
+        /// Generate a power-up that will be
+        /// small, medium or big according to luck
+        /// </summary>
+        /// <param name="luck"> Random number generated for each new enemy</param>
         public PowerUp(int luck)
         {
             position = new int[] { 0, 0 };

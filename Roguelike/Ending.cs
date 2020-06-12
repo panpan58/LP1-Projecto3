@@ -7,6 +7,9 @@ namespace Roguelike
     {
         public int [] position { get; set;}
 
+        /// <summary>
+        /// Generate a ending
+        /// </summary>
         public Ending()
         {
             position = new int [] { 0, 0};
