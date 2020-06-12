@@ -20,7 +20,8 @@ namespace Roguelike
             map = MapCreation(player, end, enemies, powerup);
         }
 
-        public int[,] MapCreation(Player player, Ending end, Enemy[] enemies, PowerUp[] powerup)
+        public int[,] MapCreation(Player player, Ending end, Enemy[] enemies, 
+        PowerUp[] powerup)
         {
             // Variables
             map = new int [rows, columns];

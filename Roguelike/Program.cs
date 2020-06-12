@@ -3,6 +3,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;  
+using System.Threading;
 
 /// <summary>
 /// 
@@ -31,7 +32,8 @@ namespace Roguelike
                 rows = Convert.ToInt32(args[1]);
                 columns = Convert.ToInt32(args[3]);
             }
-            else if ((args[0] == "-c") && (args[2] == "-r") && (args.Length == 4))
+            else if ((args[0] == "-c") && (args[2] == "-r") && 
+            (args.Length == 4))
             {
                 rows = Convert.ToInt32(args[3]);
                 columns = Convert.ToInt32(args[1]);
@@ -88,8 +90,8 @@ namespace Roguelike
 
                     //Print the intructions of the game
                     case "3":
-                        Console.WriteLine(" - Use the keys WASD to move across"
-                        +" the board");
+                        Console.WriteLine(" - Use the keys WASD/arrows to move"
+                        +" across the board.");
                         Console.WriteLine(" - Reach the objective to pass to"
                         +" the next level");
                         Console.WriteLine(" - You can't pass through enemies"
@@ -101,6 +103,8 @@ namespace Roguelike
                         +" HP");
                         Console.WriteLine(" - You can use a random small"
                         +" teleport if needed pressing the Q key");
+                        Console.WriteLine(" - YOu can quit at any moment of"
+                        + "the game by pressing the Escape key(esc).");
                         Console.WriteLine(wall);
                         Console.WriteLine("Press Enter to continue.");
                         while (Console.ReadKey().Key != ConsoleKey.Enter) { }
@@ -124,7 +128,8 @@ namespace Roguelike
                     //An option when the awnser is not valid
                     default:
                         Console.WriteLine("That's not a valid option");
-                        Console.WriteLine("Please type the number of the option");
+                        Console.WriteLine(
+                        "Please type the number of the option");
                         break;
                 }
             }
@@ -158,7 +163,8 @@ namespace Roguelike
                 {
                     for(int i = 0; i < 2; i++)
                     {
-                        MapDraw(rows, columns, n_enemies, enemies, map, player.HP, level);
+                        MapDraw(rows, columns, n_enemies, enemies, map, 
+                        player.HP, level);
                         player = player.PlayerMovement(player, map, rows, 
                         columns);
                         Console.WriteLine("----------------------------------");
@@ -175,12 +181,22 @@ namespace Roguelike
                         }
 
                     }
+                    if(player.HP <= 0)
+                    {
+                        break;
+                    }
+                    if((player.position[0] == end.position[0]) &&
+                    (player.position[1] == end.position[1]))
+                    {
+                        break;
+                    }
                     for(int i = 0; i < n_enemies; i++)
                     {
                         try
                         {
                         enemies[i] = enemies[i].EnemiesMovement(enemies, player,
                         map, rows, columns, i, vector);
+                        Thread.Sleep(500);
                         }
                         catch (NullReferenceException)
                         {
@@ -192,18 +208,14 @@ namespace Roguelike
                     {
                         break;
                     }
-                    if((player.position[0] == end.position[0]) &&
-                    (player.position[1] == end.position[1]))
-                    {
-                        break;
-                    }
                 }
                 if(player.HP <= 0)
                 {
                     Console.WriteLine("You dropped to 0 HP.");
                     Console.WriteLine("Game Over");
                     Console.WriteLine("Final Score: " + level);
-                    HighScore.AddToHighScoreList(new HighScoreList("Pattern", level));
+                    HighScore.AddToHighScoreList(new HighScoreList("Pattern", 
+                    level));
                     Menu(rows, columns);
                     break;
                 }

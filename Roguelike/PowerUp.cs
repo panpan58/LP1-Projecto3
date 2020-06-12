@@ -3,7 +3,6 @@ namespace Roguelike
     public class PowerUp
     {
         //Variables
-        private int luck;
         public int HP { get; set; }
         public int[] position { get; set; }
 

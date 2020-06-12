@@ -24,7 +24,8 @@ namespace Roguelike
             do{
                 input = Console.ReadKey(true);
 
-                if(input.Key.ToString() == "D")
+                if((input.Key.ToString() == "D") 
+                || (input.Key == ConsoleKey.RightArrow))
                 {
                     if(player.position[1]+1 < columns)
                     {
@@ -94,7 +95,8 @@ namespace Roguelike
                     }
                 }
 
-                else if(input.Key.ToString() == "A")
+                else if((input.Key.ToString() == "A") 
+                || (input.Key == ConsoleKey.LeftArrow))
                 {
                     if(player.position[1]-1 >= 0)
                     {
@@ -164,7 +166,8 @@ namespace Roguelike
                     }
                 }
 
-                else if(input.Key.ToString() == "W")
+                else if((input.Key.ToString() == "W") 
+                || (input.Key == ConsoleKey.UpArrow))
                 {
                     if(player.position[0]-1 >= 0)
                     {
@@ -233,7 +236,8 @@ namespace Roguelike
                         "You can't go that way, try another path.");
                     }
                 }
-                else if(input.Key.ToString() == "S")
+                else if((input.Key.ToString() == "S") 
+                || (input.Key == ConsoleKey.DownArrow))
                 {
                     if(player.position[0]+1 < rows)
                     {
@@ -331,9 +335,18 @@ namespace Roguelike
                     break;
                 }
 
+                else if(input.Key == ConsoleKey.Escape)
+                {
+                    player.HP = 0;
+                    Console.WriteLine(
+                    "You decided to put an end to your life ...");
+                    break;
+                }
+
                 else
                 {
-                    Console.Write("Invalid Input please type WASD to move");
+                    Console.Write(
+                    "Invalid Input please type WASD/arrows to move");
                     Console.WriteLine(
                     "or Q to use super tp to continue playing.");
                 }

@@ -12,10 +12,12 @@ namespace Roguelike
         /// <summary>
         /// Verifies if the save folder exists, if not creates one
         /// </summary>
-        /// <returns> A path for the .txt that will hold the High Scores List</returns>
+        /// <returns> A path for the .txt that will hold the 
+        /// High Scores List</returns>
         private static string GetHighScorePath()
         {
-            string folder = System.IO.Directory.GetCurrentDirectory() + "\\save";
+            string folder = System.IO.Directory.GetCurrentDirectory() + 
+            "\\save";
             if (Directory.Exists(folder) == false)
                 Directory.CreateDirectory(folder);
             string path = folder + "\\HighScore.txt";
@@ -23,14 +25,16 @@ namespace Roguelike
         }
 
         /// <summary>
-        /// Orders the scores in the highs score Writes the list of highscores in a .txt files
+        /// Orders the scores in the highs score Writes the list of 
+        /// highscores in a .txt files
         /// </summary>
         /// <param name="list"> The list of High Scores </param>
         private static void SetHighScoreList(List<HighScoreList> list)
         {
             string path = GetHighScorePath();
             List<string> lines = new List<string>();
-            foreach (HighScoreList index in list.OrderByDescending(a => a.Score))
+            foreach (HighScoreList index in 
+            list.OrderByDescending(a => a.Score))
             {
                 lines.Add(index.Name + "|" + index.Score);
             }
@@ -50,14 +54,16 @@ namespace Roguelike
                 foreach (string line in File.ReadAllLines(path))
                 {
                     string[] lineSplit = line.Split('|');
-                    list.Add(new HighScoreList(lineSplit[0], Convert.ToInt32(lineSplit[1])));
+                    list.Add(new HighScoreList(lineSplit[0], 
+                    Convert.ToInt32(lineSplit[1])));
                 }
             }
             return list;
         }
 
         /// <summary>
-        /// Adds the new score in case: there are less then 10 or it´s in the top 10
+        /// Adds the new score in case: there are less then 10 
+        /// or it´s in the top 10
         /// </summary>
         /// <param name="status">the new score</param>
         public static void AddToHighScoreList(HighScoreList status)
@@ -84,9 +90,11 @@ namespace Roguelike
         private static string GetPlayerName(int score)
         {
             Console.WriteLine("Your Score is within the top 10!");
-            Console.WriteLine("What name do you want to save with the HighScore?");
+            Console.WriteLine(
+            "What name do you want to save with the HighScore?");
             string name = Console.ReadLine();
-            Console.WriteLine("Congratulations on " + name + " for getting a score of " + score + "!");
+            Console.WriteLine("Congratulations on " + name + 
+            " for getting a score of " + score + "!");
             return name;
         }
 
