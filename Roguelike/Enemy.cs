@@ -36,6 +36,7 @@ namespace Roguelike
                     enemies[i].position[1]] == 1)
                     {
                         player.HP -= enemies[i].HP;
+                        Console.WriteLine($"You lost {enemies[i].HP} HP");
                     }
                     else if((map.map [enemies[i].position[0] + 1,
                     enemies[i].position[1]] == 0) || 
@@ -82,6 +83,7 @@ namespace Roguelike
                             map.map [enemies[i].position[0],
                             enemies[i].position[1]] = enemy_number;
                         }
+                        Console.WriteLine("An enemy moved down");
                     }
                     else
                     {
@@ -93,6 +95,7 @@ namespace Roguelike
                     enemies[i].position[1]] == 1)
                     {
                         player.HP -= enemies[i].HP;
+                        Console.WriteLine($"You lost {enemies[i].HP} HP");
                     }
                     else if((map.map [enemies[i].position[0] - 1,
                     enemies[i].position[1]] == 0) || 
@@ -139,6 +142,7 @@ namespace Roguelike
                             map.map [enemies[i].position[0],
                             enemies[i].position[1]] = enemy_number;
                         }
+                        Console.WriteLine("An enemy moved up");
                     }
                     
                 }
@@ -151,6 +155,7 @@ namespace Roguelike
                     enemies[i].position[1] + 1] == 1)
                     {
                         player.HP -= enemies[i].HP;
+                        Console.WriteLine($"You lost {enemies[i].HP} HP");
                     }
                     else if((map.map [enemies[i].position[0],
                     enemies[i].position[1] + 1] == 0) || 
@@ -197,6 +202,7 @@ namespace Roguelike
                             map.map [enemies[i].position[0],
                             enemies[i].position[1]] = enemy_number;
                         }
+                        Console.WriteLine("An enemy moved right");
                     }
                 }
                 else
@@ -205,6 +211,7 @@ namespace Roguelike
                     enemies[i].position[1] - 1] == 1)
                     {
                         player.HP -= enemies[i].HP;
+                        Console.WriteLine($"You lost {enemies[i].HP} HP");
                     }
                     else if((map.map [enemies[i].position[0],
                     enemies[i].position[1] - 1] == 0) || 
@@ -251,12 +258,11 @@ namespace Roguelike
                             map.map [enemies[i].position[0],
                             enemies[i].position[1]] = enemy_number;
                         }
+                        Console.WriteLine("An enemy moved left");
                     }
                     
                 }
             }
-            
-
             return enemies[i];
         }
     }

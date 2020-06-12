@@ -19,6 +19,7 @@ namespace Roguelike
             ConsoleKeyInfo input;
             Random rnd = new Random();
             int rnd_pos;
+            string wall = "----------------";
 
             do{
                 input = Console.ReadKey(true);
@@ -34,6 +35,9 @@ namespace Roguelike
                             player.position[1] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 4;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved right!");
+                            Console.WriteLine("You gained 4 HP");
                             break;
                         }
 
@@ -44,6 +48,9 @@ namespace Roguelike
                             player.position[1] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 8;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved right!");
+                            Console.WriteLine("You gained 8 HP");
                             break;
                         }
 
@@ -54,6 +61,9 @@ namespace Roguelike
                             player.position[1] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 16;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved right!");
+                            Console.WriteLine("You gained 16 HP");
                             break;
                         }
 
@@ -66,6 +76,9 @@ namespace Roguelike
                             player.position[1] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP -= 1;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved right!");
+                            Console.WriteLine("You lost 1 HP");
                             break;
                         }
                         else
@@ -92,6 +105,9 @@ namespace Roguelike
                             player.position[1] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 4;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved left!");
+                            Console.WriteLine("You gained 4 HP");
                             break;
                         }
 
@@ -102,6 +118,9 @@ namespace Roguelike
                             player.position[1] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 8;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved left!");
+                            Console.WriteLine("You gained 8 HP");
                             break;
                         }
 
@@ -112,6 +131,9 @@ namespace Roguelike
                             player.position[1] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 16;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved left!");
+                            Console.WriteLine("You gained 16 HP");
                             break;
                         }
 
@@ -123,7 +145,10 @@ namespace Roguelike
                             map.map[player.position[0],player.position[1]] = 0;
                             player.position[1] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
-                            player.HP -= 1; 
+                            player.HP -= 1;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved left!");
+                            Console.WriteLine("You lost 1 HP");
                             break;
                         }
                         else
@@ -150,6 +175,9 @@ namespace Roguelike
                             player.position[0] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 4;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved up!");
+                            Console.WriteLine("You gained 4 HP");
                             break;
                         }
 
@@ -160,6 +188,9 @@ namespace Roguelike
                             player.position[0] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 8;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved up!");
+                            Console.WriteLine("You gained 8 HP");
                             break;
                         }
 
@@ -170,6 +201,9 @@ namespace Roguelike
                             player.position[0] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 16;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved up!");
+                            Console.WriteLine("You gained 16 HP");
                             break;
                         }
 
@@ -182,6 +216,9 @@ namespace Roguelike
                             player.position[0] -= 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP -= 1;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved up!");
+                            Console.WriteLine("You lost 1 HP");
                             break;
                         }
                         else
@@ -207,6 +244,9 @@ namespace Roguelike
                             player.position[0] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 4;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved down!");
+                            Console.WriteLine("You gained 4 HP");
                             break;
                         }
 
@@ -217,6 +257,9 @@ namespace Roguelike
                             player.position[0] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 8;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved down!");
+                            Console.WriteLine("You gained 8 HP");
                             break;
                         }
 
@@ -227,6 +270,9 @@ namespace Roguelike
                             player.position[0] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP += 16;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved down!");
+                            Console.WriteLine("You gained 16 HP");
                             break;
                         }
 
@@ -239,6 +285,9 @@ namespace Roguelike
                             player.position[0] += 1;
                             map.map[player.position[0],player.position[1]] = 1;
                             player.HP -= 1;
+                            Console.WriteLine(wall);
+                            Console.WriteLine("You moved down!");
+                            Console.WriteLine("You lost 1 HP");
                             break;
                         }
                         else
@@ -265,11 +314,13 @@ namespace Roguelike
                         player.position[0] = rnd_pos;
                         player.position[1] = 0;
                         Console.WriteLine("The tp was successful!");
+                        Console.WriteLine("You lost 5 HP");
                     }
                     else
                     {
                         Console.WriteLine(
                         "Sorry, but the tp failed. Try again.");
+                        Console.WriteLine("You lost 5 HP");
                     }
                     if(player.HP <= 0)
                     {

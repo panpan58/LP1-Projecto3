@@ -51,7 +51,7 @@ namespace Roguelike
         static void Menu(int rows, int columns)
         {
             //Variables
-            string awnser;
+            string answer;
             bool loop = true;
             string wall = "----------------";
 
@@ -67,9 +67,10 @@ namespace Roguelike
                 Console.WriteLine("5. Quit");
                 Console.WriteLine(wall);
 
-                awnser = Console.ReadLine();
+                answer = Console.ReadLine();
                 Console.WriteLine(wall);
-                switch (awnser)
+                
+                switch (answer)
                 {
                     //Starts new game
                     case "1":
@@ -87,7 +88,19 @@ namespace Roguelike
 
                     //Print the intructions of the game
                     case "3":
-                        Console.WriteLine("TBD");
+                        Console.WriteLine(" - Use the keys WASD to move across"
+                        +" the board");
+                        Console.WriteLine(" - Reach the objective to pass to"
+                        +" the next level");
+                        Console.WriteLine(" - You can't pass through enemies"
+                        +" and walls");
+                        Console.WriteLine(" - Enemies will drain your HP if by"
+                        +" your side");
+                        Console.WriteLine(" - Power ups will give you HP");
+                        Console.WriteLine(" - For each move you do, you lose 1"
+                        +" HP");
+                        Console.WriteLine(" - You can use a random small"
+                        +" teleport if needed pressing the Q key");
                         Console.WriteLine(wall);
                         Console.WriteLine("Press Enter to continue.");
                         while (Console.ReadKey().Key != ConsoleKey.Enter) { }
@@ -145,7 +158,7 @@ namespace Roguelike
                 {
                     for(int i = 0; i < 2; i++)
                     {
-                        MapDraw(rows, columns, n_enemies, enemies, map);
+                        MapDraw(rows, columns, n_enemies, enemies, map, player.HP, level);
                         player = player.PlayerMovement(player, map, rows, 
                         columns);
                         Console.WriteLine("----------------------------------");
@@ -160,6 +173,7 @@ namespace Roguelike
                                 $"Congrats, you passed to level {level+1}!");
                             break;
                         }
+
                     }
                     for(int i = 0; i < n_enemies; i++)
                     {
@@ -173,6 +187,7 @@ namespace Roguelike
                             break;
                         }
                     }
+                    Console.WriteLine("----------------");
                     if(player.HP <= 0)
                     {
                         break;
@@ -189,6 +204,7 @@ namespace Roguelike
                     Console.WriteLine("Game Over");
                     Console.WriteLine("Final Score: " + level);
                     HighScore.AddToHighScoreList(new HighScoreList("Pattern", level));
+                    Menu(rows, columns);
                     break;
                 }
             }
@@ -196,19 +212,21 @@ namespace Roguelike
         }
         
         static void MapDraw(int rows, int columns, int n_enemies, 
-        Enemy[] enemies, Map map)
+        Enemy[] enemies, Map map, int HP, int level)
         {
             //Variables
             int [,] map_renderer = map.GetMap();
-            char objective = 'E';
+            char objective = 'O';
             char empty = '_';
             char player = 'P';
             char wall = 'W';
-            char enemy = 'B';
-            char strong_enemy = 'S';
-            char small_pup = 'Y';
-            char medium_pup = 'O';
-            char big_pup = 'G';
+            char enemy = 'e';
+            char strong_enemy = 'E';
+            char small_pup = 'S';
+            char medium_pup = 'M';
+            char big_pup = 'B';
+            
+            Console.WriteLine("HP:"+ HP + " Lvl:" + level);
             
             for (int i = 0; i < rows; i++)
             {
@@ -274,10 +292,14 @@ namespace Roguelike
                     else
                     {
                         Console.Write(empty);
-                    }  
+                    } 
                 }
                 Console.WriteLine("");
             }
+            Console.WriteLine("P - Player   O - Objective      W - Wall");
+            Console.WriteLine("e - Enemy    E - Strong enemy   S - Small" 
+            +" power up");
+            Console.WriteLine("M - Medium power up   B - Big power up");
         }
     }
 }
